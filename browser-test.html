@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOON Parser - Browser Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 TOON Parser - Browser Test</h1>
+    <p>Test the TOON Parser UMD bundle in your browser!</p>
+
+    <h2>Input (TOON format)</h2>
+    <textarea id="toonInput">name: John Doe
+age: 30
+city: New York
+hobbies: [reading, coding, hiking]
+contact:
+  email: john@example.com
+  phone: 555-1234</textarea>
+
+    <div>
+        <button onclick="parseToJson()">Parse TOON → JSON</button>
+        <button onclick="encodeToToon()">Parse JSON → TOON</button>
+        <button onclick="clearOutput()">Clear</button>
+    </div>
+
+    <h2>Output</h2>
+    <div id="output" class="output">Click a button to see the result...</div>
+
+    <!-- Load the UMD bundle -->
+    <script src="dist/umd/toon-parser.min.js"></script>
+    
+    <script>
+        function parseToJson() {
+            try {
+                const input = document.getElementById('toonInput').value;
+                const parser = new ToonParser.ToonParser();
+                const result = parser.parse(input);
+                document.getElementById('output').textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('output').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        function encodeToToon() {
+            try {
+                const input = document.getElementById('toonInput').value;
+                // First parse as JSON, then encode to TOON
+                const data = JSON.parse(input);
+                const encoder = new ToonParser.ToonEncoder();
+                const result = encoder.encode(data);
+                document.getElementById('output').textContent = result;
+            } catch (error) {
+                document.getElementById('output').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        function clearOutput() {
+            document.getElementById('output').textContent = 'Click a button to see the result...';
+        }
+
+        // Test on load
+        console.log('TOON Parser loaded:', ToonParser);
+        console.log('Available exports:', Object.keys(ToonParser));
+    </script>
+</body>
+</html>

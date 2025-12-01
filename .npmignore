@@ -1,0 +1,54 @@
+# Source files
+src/
+
+# Tests
+*.test.ts
+*.test.js
+**/__tests__/
+dist/**/__tests__/
+dist/cjs/__tests__/
+dist/esm/__tests__/
+dist/umd/__tests__/
+
+# Build config
+tsconfig.json
+tsconfig.cjs.json
+tsconfig.esm.json
+vitest.config.ts
+rollup.config.js
+scripts/
+
+# Documentation (except README)
+REFACTORING.md
+PERFORMANCE.md
+PERFORMANCE-V1.1.md
+FEATURES-V1.1.md
+SHIPPING.md
+benchmark.ts
+benchmark-v1.1.ts
+browser-test.html
+test.toon
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# Git
+.git/
+.gitignore
+.github/
