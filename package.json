@@ -37,7 +37,8 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run minify",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:umd && npm run minify",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json && node scripts/fix-esm.js",
     "build:umd": "rollup -c rollup.config.js",
